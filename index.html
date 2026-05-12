@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<header></header>
+<main>
+    <form action="">
+        <legend>Formulario</legend>
+        <fieldset><!--Informaccion del cliente-->
+            <legend>Informacion del cliente</legend>
+            <label for="NombreCliente">Nombre del cliente:</label>
+            <select name="NombreCliente" id="NombreCliente" >
+                <option value="0" disabled selected>Selecciona un cliente</option>
+                <option value="1">Solistica</option>
+                <option value="2">DHL</option>
+                <option value="3">Canpack</option>
+            </select><br>
+            <label for="NombrePersona">Nombre Persona:</label>
+            <input type="text" name="NombrePersona" id="NombrePersona"><br>
+            <label for="DireccionCliente">Dirección del cliente:</label>
+            <input type="text" name="DireccionCliente" id="DireccionCliente"><br>
+            <label for="NumeroTelefono">Numero de telefono:</label>
+            <input type="number" name="NumeroTelefono" id="NumeroTelefono"><br>
+            <label for="Ciudad">Ciudad:</label>
+            <input type="text" name="Ciudad" id="Ciudad"><br>
+            <label for="NumeroBodega">Numero de bodega:</label>
+            <input type="number" name="NumeroBodega" id="NumeroBodega"><br>
+        </fieldset>
+
+        <fieldset><!--Datos del montacarga-->
+            <legend>Datos de Montacarga</legend>
+            <label for="Marca">Marca:</label>
+            <select name="Marca" id="Marca" >
+                <option value="0" disabled selected>Selecciona una marca</option>
+                <option value="1">Hyster</option>
+                <option value="2">Jungheinrich </option>
+                <option value="3">Raymond</option>
+                <option value="4">Still</option>
+                <option value="5">Toyota</option>
+                <option value="6">Yale</option>
+                <option value="7">BYD</option>
+                <option value="8">EP</option>
+            </select><br>
+            <label for="Modelo">Modelo:</label>
+            <input type="text" name="Modelo" id="Modelo"><br>
+            <label for="serie">Serie:</label>
+            <input type="text" name="serie" id="serie"><br>
+            <label for="Horometro">Horometro:</label>
+            <input type="number" name="Horometro" id="Horometro"><br>
+            <label for="año">Año de fabricacion:</label>
+            <input type="number" name="año" id="año"><br>
+        </fieldset>
+
+        <fieldset><!--Datos de servicio-->
+            <legend>Datos de servicio</legend>
+            <label for="fecha">Fecha:</label>
+            <input type="date" name="fecha" id="fecha"><br>
+            <label for="time">Hora de inicio:</label>
+            <input type="time" name="time" id="time-inicial"><br>
+            <label for="time">Hora de finalizacion:</label>
+            <input type="time" name="time" id="time-final"><br>
+            <label for="numeroConsecutivo">Consecutivo:</label>
+            <input type="number" name="numeroConsecutivo" id="numeroConsecutivo"><br>
+            <label for="tipoServicio">Tipo de servicio:</label>
+            <select name="tipoServicio" id="tipoServicio" >
+                <option value="0" disabled selected>Selecciona un tipo</option>
+                <option value="1">Mantenimiento Correctivo</option>
+                <option value="2">Mantenimiento Preventivo</option>
+                <option value="3">Diagnostico</option>
+                <option value="4">Entrega de equipo</option>
+                <option value="5">Retiro de equipo </option>
+                <option value="6">Remision</option>
+            </select><br>
+        </fieldset>
+
+        <section class="entrega" id="entrega" style="display: none;">
+            <table><!--Informacion Mastil-->
+                <caption>Informacion mastil</caption>
+                <thead>
+                    <th>Item a inspeccionar</th>
+                    <th>Estado (bueno/Regular/Malo)</th>
+                    <th>Observaciones</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mangueras posicionadas y en buen estado</td>
+                        <td>
+                             <select name="estadosMangueras" id="estadosMangueras" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Bueno</option>
+                            <option value="2">Regular</option>
+                            <option value="3">Malo</option>
+                        </select>
+                        </td>
+                        <td><input type="text" name="observacionesMangueras" id="observacionesMangueras"></td>
+                    </tr>
+                    <tr>
+                        <td>Cilindros funcionando correctamente</td>
+                        <td>
+                        <select name="estadosCilindros" id="estadosCilindros" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Bueno</option>
+                            <option value="2">Regular</option>
+                            <option value="3">Malo</option>
+                        </select>
+                        </td>
+                        <td><input type="text" name="observacionesCilindros" id="observacionesCilindros"></td>
+                    </tr>
+                    <tr>
+                        <td>Estado fisico del mastil</td>
+                        <td><select name="estadosEstadoMastil" id="estadosEstadoMastil" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Bueno</option>
+                            <option value="2">Regular</option>
+                            <option value="3">Malo</option>
+                        </select></td>
+                        <td><input type="text" name="observacionesEstadoMastil" id="observacionesEstadoMastil"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table><!--Informacion Chasis-->
+                <caption>Informacion Chasis</caption>
+                <thead>
+                    <th>Item a inspeccionar</th>
+                    <th>Estado (bueno/Regular/Malo)</th>
+                    <th>Observaciones</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pernos de las ruedas ajustados</td>
+                        <td>
+                            <select name="estadosPernosRuedas" id="estadosPernosRuedas" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Bueno</option>
+                            <option value="2">Regular</option>
+                            <option value="3">Malo</option>
+                        </select></td>
+                        <td><input type="text" name="observacionesPernosRuedas" id="observacionesPernosRuedas"></td>
+                    </tr>
+                    <tr>
+                        <td>Operacion parada de emergencia</td>
+                        <td>
+                            <select name="estadosParadaEmergencia" id="estadosParadaEmergencia" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Bueno</option>
+                            <option value="2">Regular</option>
+                            <option value="3">Malo</option>
+                        </select>
+                        </td>
+                        <td><input type="text" name="observacionesParadaEmergencia" id="observacionesParadaEmergencia"></td>
+                    </tr>
+                    <tr>
+                        <td>Operacion de pedales</td>
+                        <td>
+                        <select name="estadosPedales" id="estadosPedales" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Bueno</option>
+                            <option value="2">Regular</option>
+                            <option value="3">Malo</option>
+                        </select>
+                        </td>
+                        <td><input type="text" name="observacionesEstadoPedales" id="observacionesEstadoPedales"></td>
+                    </tr>
+                    <tr>
+                        <td>Niveles de aceites adecuados</td>
+                        <td>
+                            <select name="estadosNivelesAceite" id="estadosNivelesAceite" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Bueno</option>
+                            <option value="2">Regular</option>
+                            <option value="3">Malo</option>
+                        </select>
+                        </td>
+                        <td><input type="text" name="observacionesNivelesAceite" id="observacionesNivelesAceite"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table><!--Informacion General-->
+                <caption>Informacion General equipo</caption>
+                <thead>
+                    <th>Item a inspeccionar</th>
+                    <th>Estado (bueno/Regular/Malo)</th>
+                    <th>Observaciones</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pintura y estado general es adecuada</td>
+                        <td>
+                             <select name="estadosEstadoGeneral" id="estadosEstadoGeneral" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Bueno</option>
+                            <option value="2">Regular</option>
+                            <option value="3">Malo</option>
+                        </select>
+                        </td>
+                        <td><input type="text" name="observacionesMangueras" id="observacionesEstadoGeneral"></td>
+                    </tr>
+                    <tr>
+                        <td>Conexiones electricas firmes y apretadas</td>
+                        <td>
+                        <select name="estadosConexionesElectricas" id="estadosConexionesElectricas" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Bueno</option>
+                            <option value="2">Regular</option>
+                            <option value="3">Malo</option>
+                        </select>
+                        </td>
+                        <td><input type="text" name="observacionesConexionesElectricas" id="observacionesConexionesElectricas"></td>
+                    </tr>   
+                    <tr>
+                            <td>Funcionamiento de luces y alarmas</td>
+                            <td><select name="estadosLucesAlarmas" id="estadosLucesAlarmas" >
+                                <option value="0" disabled selected>Selecciona un estado</option>
+                                <option value="1">Bueno</option>
+                                <option value="2">Regular</option>
+                                <option value="3">Malo</option>
+                            </select></td>
+                            <td><input type="text" name="observacionesLucesAlarmas" id="observacionesLucesAlarmas"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Ejemplo para la foto de la batería -->
+        <label for="fotoMontacarga">Foto del Montacarga:</label>
+        <input type="file" id="fotoMontacarga" name="fotoMontacarga[]" accept="image/*" multiple>
+        <article id="contenedorFotosMontacarga"></article>
+
+            <table><!--Informacion cargador-->
+                <caption>Informacion del cargador </caption>
+                <thead>
+                    <th>Item a inspeccionar</th>
+                    <th>Estado (bueno/Regular/Malo)</th>
+                    <th>Observaciones</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>El sistema de carga de la bateria esta en optimas condiciones</td>
+                        <td>
+                             <select name="estadosSistemaCarga" id="estadosSistemaCarga" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Bueno</option>
+                            <option value="2">Regular</option>
+                            <option value="3">Malo</option>
+                        </select>
+                        </td>
+                        <td><input type="text" name="observacionesSistemaCarga" id="observacionesSistemaCarga"></td>
+                    </tr>
+                    <tr>
+                        <td>Estructura fisica del cargador</td>
+                        <td>
+                        <select name="estadosEstructuraCargador" id="estadosEstructuraCargador" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Bueno</option>
+                            <option value="2">Regular</option>
+                            <option value="3">Malo</option>
+                        </select>
+                        </td>
+                        <td><input type="text" name="observacionesEstructuraCargador" id="observacionesEstructuraCargador"></td>
+                    </tr>
+                    <tr>
+                        <td>Entrega de equipo con clavija de seguridad</td>
+                        <td><select name="estadosEntregaClavija" id="estadosEntregaClavija" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Si</option>
+                            <option value="2">No</option>
+                        </select></td>
+                        <td><input type="text" name="observacionesEntregaClavija" id="observacionesEntregaClavija"></td>
+                    </tr>
+                </tbody>
+            </table>
+        <label for="fotoCargador">Foto del Cargador:</label>
+        <input type="file" id="fotoCargador" name="fotoCargador[]" accept="image/*" multiple>
+        <article id="contenedorFotosCargador"></article>
+
+        <table><!--Informacion bateria-->
+                <caption>Informacion de la bateria </caption>
+                <thead>
+                    <th>Item a inspeccionar</th>
+                    <th>Estado (bueno/Regular/Malo)</th>
+                    <th>Observaciones</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bateria cargada y probada</td>
+                        <td>
+                             <select name="estadosSistemaCarga" id="estadosSistemaCarga" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Si</option>
+                            <option value="2">No</option>
+                        </select>
+                        </td>
+                        <td><input type="text" name="observacionesSistemaCarga" id="observacionesSistemaCarga"></td>
+                    </tr>
+                    <tr>
+                        <td>Nivel de electrolito adecuado</td>
+                        <td>
+                        <select name="estadoElectrolito" id="estadoElectrolito" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Bueno</option>
+                            <option value="2">Regular</option>
+                            <option value="3">Malo</option>
+                        </select>
+                        </td>
+                        <td><input type="text" name="observacionesElectrolito" id="observacionesElectrolito"></td>
+                    </tr>
+                    <tr>
+                        <td>Apariencia general de la bateria</td>
+                        <td><select name="estadosAparienciaBateria" id="estadosAparienciaBateria" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Bueno</option>
+                            <option value="2">Regular</option>
+                            <option value="3">Malo</option>
+                        </select></td>
+                        <td><input type="text" name="observacionesAparienciaBateria" id="observacionesAparienciaBateria"></td>
+                    </tr>
+                </tbody>
+        </table>
+        <label for="fotoBateria">Foto de la Bateria:</label>
+        <input type="file" id="fotoBateria" name="fotoBateria[]" accept="image/*" multiple>
+        <article id="contenedorFotosBateria"></article>
+            
+        </section><!--Fin seccion tipo servicio Entrega-->
+        <section class="preventivo" id="preventivo" style="display: none;">
+            <H1>SECCION PREVENTIVO</H1>
+        </section><!--Fin seccion tipo servicio Preventivo-->
+
+        <section class="DatosGeneralesContenedor">
+            <fieldset>
+                <legend>Datos Generales</legend>
+                <label for="Observaciones">Observaciones:</label><br>
+            <textarea name="Observaciones" id="Observaciones" cols="30" rows="10"></textarea><br>
+            <label for="Pendientes">Pendientes:</label><br>
+            <textarea name="Pendientes" id="Pendientes" cols="30" rows="10"></textarea><br>
+
+            <label for="nombreTecnico">Nombre del tecnico:</label><br>
+            <input type="text" name="nombreTecnico" id="nombreTecnico"><br>
+            <label for="firmaTecnico">Firma del tecnico:</label><br>
+            <canvas  name="firmaTecnico" id="firmaTecnico" width="300" height="100"></canvas><br>
+
+            <label for="nombreRecibe">Nombre del quien recibe:</label><br>
+            <input type="text" name="nombreRecibe" id="nombreRecibe"><br>
+            <label for="firmaRecibe">Firma del quien recibe:</label><br>
+            <canvas name="firmaRecibe" id="firmaRecibe" width="300" height="100"></canvas><br>
+             <button type="submit" id="btnEnviar">Enviar Formulario ✉️</button>
+        </fieldset>
+            
+        </section><!--Fin seccion datos generales (Observaciones,pendientes,nombre tecnico y persona recibe y firma)-->
+    </form>
+</main>
+<footer></footer>
+<script src="./script.js"></script>
+</body>
+</html>
