@@ -5,7 +5,7 @@ const SeccionPreventivo = document.getElementById("preventivo");
 const fotoMontacarga = document.getElementById("fotoMontacarga");
 const contenedorFotosMontacarga = document.getElementById("contenedorFotosMontacarga");
 const firmaTecnico = document.getElementById("firmaTecnico");
-const firmaCliente = document.getElementById("firmaCliente");
+const firmaCliente = document.getElementById("firmaRecibe");
 //Funcion para ocultar o mostrar secciones dependiendo del tipo de servicio seleccionado
 tipoServicio.addEventListener("change",function hola(){
     SeccionEntrega.style.display = "none";
@@ -44,22 +44,48 @@ fotoMontacarga.addEventListener("change", function mostrarFoto(){
 
 const ctxTecnico = firmaTecnico.getContext("2d");
 let dibujandoTecnico = false;
+const ctxCliente = firmaCliente.getContext("2d");
+let dibujandoCliente = false;
+//Funcion para evitar tanto codigo 
+function EmpezarTrazo(valor,evento){
+    valor.beginPath();
+    valor.moveTo(evento.offsetX, evento.offsetY);
+}
+function MoverTrazo(valor,evento){
+    valor.lineTo(evento.offsetX, evento.offsetY);
+    valor.stroke();
+    valor.strokeStyle = "red";
+    valor.lineWidth = 3;
+}
 
 firmaTecnico.addEventListener("mousedown", function(e){
     dibujandoTecnico = true;
-    ctxTecnico.beginPath();
-    ctxTecnico.moveTo(e.offsetX, e.offsetY);
+    EmpezarTrazo(ctxTecnico,e);
 });
 firmaTecnico.addEventListener("mousemove", function(e){
-    
          if(dibujandoTecnico == true){
-            ctxTecnico.lineTo(e.offsetX, e.offsetY);
-        ctxTecnico.stroke();
-        ctxTecnico.strokeStyle = "red";
-        ctxTecnico.lineWidth = 3;
+           MoverTrazo(ctxTecnico,e); 
     }
 });
+
 firmaTecnico.addEventListener("mouseup",function(e){
         dibujandoTecnico = false;
         console.log("Terminando de dibujar en la firma del tecnico");
     });
+
+
+
+firmaCliente.addEventListener("mousedown", function(e){
+    dibujandoCliente = true;
+    EmpezarTrazo(ctxCliente,e);
+});
+
+firmaCliente.addEventListener("mousemove", function(e){
+    if(dibujandoCliente ==true){
+        MoverTrazo(ctxCliente,e)
+    }
+})
+firmaCliente.addEventListener("mouseup",function(e){
+    dibujandoCliente = false;
+    console.log("Terminando de dibujar en la firma del cliente");
+});
