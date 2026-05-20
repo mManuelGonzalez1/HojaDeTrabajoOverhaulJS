@@ -2,8 +2,14 @@
 const tipoServicio = document.getElementById("tipoServicio");
 const SeccionEntrega= document.getElementById("entrega");
 const SeccionPreventivo = document.getElementById("preventivo");
+//Fotos
 const fotoMontacarga = document.getElementById("fotoMontacarga");
 const contenedorFotosMontacarga = document.getElementById("contenedorFotosMontacarga");
+const fotoBateria = document.getElementById("fotoBateria");
+const contenedorFotosBateria = document.getElementById("contenedorFotosBateria");
+const fotoCargador = document.getElementById("fotoCargador");
+const contenedorFotosCargador = document.getElementById("contenedorFotosCargador");
+//Firmas
 const firmaTecnico = document.getElementById("firmaTecnico");
 const firmaCliente = document.getElementById("firmaRecibe");
 const eliminarFirmaTecnico = document.getElementById("eliminarFirmaTecnico");
@@ -14,6 +20,9 @@ const ctxTecnico = firmaTecnico.getContext("2d");
 const ctxCliente = firmaCliente.getContext("2d");
 let imagenTecnico;
 const lienzoVacio = firmaTecnico.toDataURL();
+let fotosMontacargaBase64=[];//Array para guarar las fotos que subamos del montacarga en base 64
+let fotosBateriaBase64=[];//Array para guarar las fotos que subamos de bateria en base 64
+let fotosCargadorBase64=[];//Array para guarar las fotos que subamos del cargador en base 64
 //Funcion para ocultar o mostrar secciones dependiendo del tipo de servicio seleccionado
 tipoServicio.addEventListener("change",function hola(){
     SeccionEntrega.style.display = "none";
@@ -28,27 +37,51 @@ tipoServicio.addEventListener("change",function hola(){
     }
 
 })
-
-//Funcion para mostrar la foto de la montacarga dependiendo del modelo seleccionado
-fotoMontacarga.addEventListener("change", function mostrarFoto(){
+//Funcion para empaquetar vistaprevia fotos y leida de las mismas 
+function procesarFotos(ContenedorFotos, InputFoto, arrayDestino) {
     // 1. Limpiamos el contenedor antes de empezar,esto con el fin de que si 
-    //hay mas fotos, no se acumulen en el contenedor, sino que se reemplacen por las nuevas fotos seleccionadas
-    contenedorFotosMontacarga.innerHTML = "";
-    for(let foto of fotoMontacarga.files){
-        // 2. Creamos un nuevo elemento de imagen para cada foto seleccionada, y le asignamos la URL de la foto utilizando
-        //  URL.createObjectURL, esto nos permite mostrar la foto sin necesidad de subirla a un servidor.
-       const nuevaFoto= document.createElement("img");
-       nuevaFoto.src = URL.createObjectURL(foto);
-       //3.Estilizamos las fotos para que se vena bien en el contendor,
+    //hay mas fotos, no se acumulen en el contenedor, 
+    // sino que se reemplacen por las nuevas fotos seleccionadas
+    ContenedorFotos.innerHTML="";
+    //Creamos el for para que itere en todas las fotos
+    for(let foto of InputFoto.files){
+    
+        const Lector = new FileReader();
+        // 2. Creamos un nuevo elemento de imagen para cada foto seleccionada, 
+        // y le asignamos la URL de la foto utilizando URL
+        const nuevaFoto= document.createElement("img");
+        nuevaFoto.src = URL.createObjectURL(foto);
+        //3.Estilizamos las fotos para que se vena bien en el contendor,
          nuevaFoto.style.width = "200px";
          nuevaFoto.style.height = "200px";
          nuevaFoto.style.objectFit = "cover";
          nuevaFoto.style.margin = "10px";
          nuevaFoto.style.justifyContent = "center";
         //4. Agregamos la nueva foto al contenedor de fotos de montacarga
-         contenedorFotosMontacarga.appendChild(nuevaFoto);
+         ContenedorFotos.appendChild(nuevaFoto);
+         //5. Creamos esta funcion para volver las imagenes previas
+         // un texto64 y que el servidor o pdf las puedan leer
+         Lector.onload = function(evento){
+            // Este código solo se ejecuta cuando el lector termina
+            const textoBase64 = evento.target.result; // Aquí está tu texto largo
+            arrayDestino.push(textoBase64)       
+       }
+        //Leer el archivo
+       Lector.readAsDataURL(foto);
     }
+ }
+
+//Funcion para mostrar la foto de la montacarga dependiendo del modelo seleccionado
+fotoMontacarga.addEventListener("change", function mostrarFoto(){
+    procesarFotos(contenedorFotosMontacarga,fotoMontacarga,fotosMontacargaBase64);
 })
+fotoCargador.addEventListener("change",function mostrarFoto(){
+    procesarFotos(contenedorFotosCargador,fotoCargador,fotosCargadorBase64);
+})
+fotoBateria.addEventListener("change", function mostrarFoto(){
+    procesarFotos(contenedorFotosBateria,fotoBateria,fotosBateriaBase64);
+})
+
 //Espacio dibujo de firma 
 //Variables
 let dibujandoTecnico = false;
