@@ -6,6 +6,14 @@ const fotoMontacarga = document.getElementById("fotoMontacarga");
 const contenedorFotosMontacarga = document.getElementById("contenedorFotosMontacarga");
 const firmaTecnico = document.getElementById("firmaTecnico");
 const firmaCliente = document.getElementById("firmaRecibe");
+const eliminarFirmaTecnico = document.getElementById("eliminarFirmaTecnico");
+const eliminarFirmaCliente = document.getElementById("eliminarFirmaCliente");
+const guardarFirmaTecnico = document.getElementById("guardarFirmaTecnico");
+const guardarFirmaCliente = document.getElementById("guardarFirmaCliente");
+const ctxTecnico = firmaTecnico.getContext("2d");
+const ctxCliente = firmaCliente.getContext("2d");
+let imagenTecnico;
+const lienzoVacio = firmaTecnico.toDataURL();
 //Funcion para ocultar o mostrar secciones dependiendo del tipo de servicio seleccionado
 tipoServicio.addEventListener("change",function hola(){
     SeccionEntrega.style.display = "none";
@@ -41,11 +49,11 @@ fotoMontacarga.addEventListener("change", function mostrarFoto(){
          contenedorFotosMontacarga.appendChild(nuevaFoto);
     }
 })
-
-const ctxTecnico = firmaTecnico.getContext("2d");
+//Espacio dibujo de firma 
+//Variables
 let dibujandoTecnico = false;
-const ctxCliente = firmaCliente.getContext("2d");
 let dibujandoCliente = false;
+
 //Funcion para evitar tanto codigo 
 function EmpezarTrazo(valor,evento){
     valor.beginPath();
@@ -57,7 +65,12 @@ function MoverTrazo(valor,evento){
     valor.strokeStyle = "red";
     valor.lineWidth = 3;
 }
+//Funcion eliminar trazo 
+function eliminarTrazo(contexo,valor){
+    contexo.clearRect(0, 0, valor.width, valor.height);
 
+}
+//Event listeners (oprimir,mover,soltar)
 firmaTecnico.addEventListener("mousedown", function(e){
     dibujandoTecnico = true;
     EmpezarTrazo(ctxTecnico,e);
@@ -67,14 +80,11 @@ firmaTecnico.addEventListener("mousemove", function(e){
            MoverTrazo(ctxTecnico,e); 
     }
 });
-
 firmaTecnico.addEventListener("mouseup",function(e){
         dibujandoTecnico = false;
         console.log("Terminando de dibujar en la firma del tecnico");
     });
-
-
-
+//Event listeners (oprimir,mover,soltar) CLIENTE
 firmaCliente.addEventListener("mousedown", function(e){
     dibujandoCliente = true;
     EmpezarTrazo(ctxCliente,e);
@@ -87,5 +97,25 @@ firmaCliente.addEventListener("mousemove", function(e){
 })
 firmaCliente.addEventListener("mouseup",function(e){
     dibujandoCliente = false;
+    
     console.log("Terminando de dibujar en la firma del cliente");
 });
+
+//Eliminar firmas con boton
+eliminarFirmaCliente.addEventListener("click",function(){
+   eliminarTrazo(ctxCliente,firmaCliente)  
+})
+eliminarFirmaTecnico.addEventListener("click", ()=>
+eliminarTrazo(ctxTecnico,firmaTecnico));
+
+//Guardar Firmas
+guardarFirmaCliente.addEventListener("click",function(){
+    const firmaActual= firmaCliente.toDataURL();
+    if(firmaActual == lienzoVacio){
+        alert("FIRMA EL DOCUMENTO POR FAVOR");
+    }else{
+            alert("FIRMA GUARDADA ");
+            console.log(firmaActual);
+
+        }
+    })
