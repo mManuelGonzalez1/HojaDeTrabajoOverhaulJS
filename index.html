@@ -325,6 +325,226 @@
         </section><!--Fin seccion tipo servicio Entrega-->
         <section class="preventivo" id="preventivo" style="display: none;">
             <H1>SECCION PREVENTIVO</H1>
+            <table>
+                <caption>Inspeccion Mantenimiento preventivo</caption>
+                <thead>
+                    <th>Item a inspeccionar</th>
+                    <th>Estado</th>
+                    <th>Observaciones</th>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>Estado de la bateria</td>
+                        <td>
+                             <select name="estadoBateriaPreventivo" id="estadoBateriaPreventivo" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Bueno</option>
+                            <option value="2">Regular</option>
+                            <option value="3">Malo</option>
+                        </select>
+                        </td>  
+                    </tr>
+                    <tr>
+                         <td>Nivel de electrolito</td>
+                         <td>
+                            <select name="estadoElectrolitoPreventivo" id="estadoElectrolitoPreventivo" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">A nivel</option>
+                            <option value="2">Por encima del nivel</option>
+                            <option value="3">Por debajo del Nivel</option>
+                         </td>
+                    </tr>
+                    <tr>
+                         <td>Nivel de Aceite hidraulico</td>
+                         <td>
+                            <select name="nivelAceiteHidraulicoPreventivo" id="nivelAceiteHidraulicoPreventivo" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">A nivel</option>
+                            <option value="2">Por encima del nivel</option>
+                            <option value="3">Por debajo del Nivel</option>
+                         </td>
+                    </tr>
+                    <tr>
+                        <td>Estado de Aceite hidraulico</td>
+                         <td>
+                            <select name="estadoAceiteHidraulicoPreventivo" id="estadoAceiteHidraulicoPreventivo" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Optimo</option>
+                            <option value="2">Para cambio</option>
+                         </td>
+                    </tr>
+                    <tr>
+                        <td>Estado de Aceite transmision</td>
+                         <td>
+                            <select name="estadoAceiteTransmisionPreventivo" id="estadoAceiteTransmisionPreventivo" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Optimo</option>
+                            <option value="2">Para cambio</option>
+                         </td>
+                    </tr>
+                    <tr>
+                        <td>¿Fugas de aceite presentadas?</td>
+                         <td>
+                            <select name="fugasAceite" id="fugasAceite" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Sí</option>
+                            <option value="2">No</option>
+                         </td>
+                         <td><input type="text" name="observacionesFugas" id="observacionesFugas"></td>
+                    </tr>
+                    <tr>
+                        <td>Estado de mangueras</td>
+                         <td>
+                            <select name="estadoMangueras" id="estadoMangueras" >
+                            <option value="0" disabled selected>Selecciona un estado</option>
+                            <option value="1">Optimo</option>
+                            <option value="2">Con leve desgaste</option>
+                            <option value="3">Con desgaste moderado</option>
+                            <option value="4">Para cambio</option>
+                         </td>
+                         <td><input type="text" name="observacionesMangueras" id="observacionesMangueras"></td>
+                    </tr>
+                        <tr>
+                            <td>Estado de cilindros</td>
+                            <td>
+                                <select name="estadoCilindros" id="estadoCilindros" >
+                                <option value="0" disabled selected>Selecciona un estado</option>
+                                <option value="1">Optimo</option>
+                                <option value="2">Con fugas</option>
+                            </td>
+                            <td><input type="text" name="observacionesCilindros" id="observacionesCilindros"></td>
+                        </tr>
+                        <tr>
+                            <td>Estado de deslizadores del carro</td>
+                            <td>
+                                <select name="estadoDeslizadores" id="estadoDeslizadores" >
+                                <option value="0" disabled selected>Selecciona un estado</option>
+                                <option value="1">Optimo</option>
+                                <option value="2">Con desgaste</option>
+                                <option value="3">Para cambio</option>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Estado de cadenas</td>
+                            <td>
+                                <select name="estadoCadenas" id="estadoCadenas" >
+                                <option value="0" disabled selected>Selecciona un estado</option>
+                                <option value="1">Optimo</option>
+                                <option value="2">Con desgaste</option>
+                                <option value="3">Para cambio</option>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Estado de ruedas</td>
+                            <td>
+                                <select name="estadoRuedas" id="estadoRuedas" >
+                                <option value="0" disabled selected>Selecciona un estado</option>
+                                <option value="1">Recubrimiento Optimo</option>
+                                <option value="2">Recubrimiento con desgaste</option>
+                                <option value="3">Para reencauchetado o cambio</option>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Estado de frenos</td>
+                            <td>
+                                <select name="estadoFrenos" id="estadoFrenos" >
+                                <option value="0" disabled selected>Selecciona un estado</option>
+                                <option value="1">Optimo</option>
+                                <option value="2">Se requiere Ajuste</option>
+                            </td>
+                        </tr>
+
+                         <tr>
+                            <td>Funcionamiento Horometro</td>
+                            <td>
+                                <select name="funcionamientoHorometro" id="funcionamientoHorometro" >
+                                <option value="0" disabled selected>Selecciona un estado</option>
+                                <option value="1">Operativo</option>
+                                <option value="2">Inoperativo</option>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Funcionamiento indicador de descarga</td>
+                            <td>
+                                <select name="funcionamientoIndicadorDescarga" id="funcionamientoIndicadorDescarga" >
+                                <option value="0" disabled selected>Selecciona un estado</option>
+                                <option value="1">Operativo</option>
+                                <option value="2">Inoperativo</option>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Funcionamiento Bocina</td>
+                            <td>
+                                <select name="funcionamientoBocina" id="funcionamientoBocina" >
+                                <option value="0" disabled selected>Selecciona un estado</option>
+                                <option value="1">Operativo</option>
+                                <option value="2">Inoperativo</option>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Funcionamiento Luces</td>
+                            <td>
+                                <select name="funcionamientoLuces" id="funcionamientoLuces" >
+                                <option value="0" disabled selected>Selecciona un estado</option>
+                                <option value="1">Operativas</option>
+                                <option value="2">Inoperativas</option>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Funcionamiento Joystick</td>
+                            <td>
+                                <select name="funcionamientoJoystick" id="funcionamientoJoystick" >
+                                <option value="0" disabled selected>Selecciona un estado</option>
+                                <option value="1">Operativo</option>
+                                <option value="2">Inoperativo</option>
+                            </td>
+                            <td><input type="text" name="observacionesJoystick" id="observacionesJoystick"></td>
+                        </tr>
+
+                         <tr>
+                            <td>Funcionamiento Hombre muerto</td>
+                            <td>
+                                <select name="funcionamientoHombreMuerto" id="funcionamientoHombreMuerto" >
+                                <option value="0" disabled selected>Selecciona un estado</option>
+                                <option value="1">Operativo</option>
+                                <option value="2">Inoperativo</option>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Funcionamiento Paro de emergencia</td>
+                            <td>
+                                <select name="funcionamientoParoEmergencia" id="funcionamientoParoEmergencia" >
+                                <option value="0" disabled selected>Selecciona un estado</option>
+                                <option value="1">Operativo</option>
+                                <option value="2">Inoperativo</option>
+                            </td>
+                        </tr>
+                </tbody>
+                
+            </table>
+
+            <table>
+                <caption>Insumos utilizados</caption>
+                <thead>
+                    <th>Nombre Insumo</th>
+                    <th>Cantidad</th>
+                    <th>Unidad de medida</th>
+                </thead>
+                <tbody id="tablaInsumosPreventivo">
+                    <tr>
+                        <td>
+                    <input type="button" id="agregarInsumo" value="AgregarInsumo"></input>
+                        </td>
+                    </tr>
+                </tbody>
+            </table><!--Tabla para agregar insumos utilizados en el mantenimiento preventivo, con un boton para agregar mas filas-->
+
+        <label for="fotoRepuestosPreventivo">Foto de Repuestos instalados:</label>
+        <input type="file" id="fotoRepuestosPreventivo" name="fotoRepuestosPreventivo[]" accept="image/*" multiple>
+        <article id="contenedorFotosRepuestosPreventivos"></article>
         </section><!--Fin seccion tipo servicio Preventivo-->
 
         <section class="DatosGeneralesContenedor">
