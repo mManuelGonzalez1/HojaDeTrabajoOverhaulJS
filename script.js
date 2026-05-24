@@ -2,18 +2,24 @@
 const tipoServicio = document.getElementById("tipoServicio");
 const SeccionEntrega= document.getElementById("entrega");
 const SeccionPreventivo = document.getElementById("preventivo");
+const SeccionCorrectivo = document.getElementById("correctivo");
+const SeccionRetiro = document.getElementById("retiro");
 
 //Seccion insumos mto prev
 const tablaInsumosPreventivo =  document.getElementById("tablaInsumosPreventivo");
 const botonAñadir = document.getElementById("agregarInsumo");
 const filaInsumo= document.getElementsByClassName("fila-insumo");
-//Fotos
-const fotoMontacarga = document.getElementById("fotoMontacarga");
-const contenedorFotosMontacarga = document.getElementById("contenedorFotosMontacarga");
-const fotoBateria = document.getElementById("fotoBateria");
-const contenedorFotosBateria = document.getElementById("contenedorFotosBateria");
-const fotoCargador = document.getElementById("fotoCargador");
-const contenedorFotosCargador = document.getElementById("contenedorFotosCargador");
+//Mapa fotos entrega y retiro y repuestos correctivo y preventivo
+const configuracionFotos = [
+    { input: fotoMontacarga, contenedor: contenedorFotosMontacarga },
+    { input: fotoCargador, contenedor: contenedorFotosCargador },
+    { input: fotoBateria, contenedor: contenedorFotosBateria },
+    { input: fotoMontacargaRetiro, contenedor: contenedorFotosMontacargaRetiro },
+    { input: fotoCargadorRetiro, contenedor: contenedorFotosCargadorRetiro },
+    { input: fotoBateriaRetiro, contenedor: contenedorFotosBateriaRetiro },
+    { input: fotoRepuestosPreventivo, contenedor: contendorFotosRepuestosPreventivo },
+    { input: fotoRepuestosCorrectivo, contenedor: contendorFotosRepuestosCorrectivo }
+];
 //Firmas
 const firmaTecnico = document.getElementById("firmaTecnico");
 const firmaCliente = document.getElementById("firmaRecibe");
@@ -24,35 +30,24 @@ const guardarFirmaCliente = document.getElementById("guardarFirmaCliente");
 const ctxTecnico = firmaTecnico.getContext("2d");
 const ctxCliente = firmaCliente.getContext("2d");
 let imagenTecnico;
+let dibujandoTecnico = false;
+let dibujandoCliente = false;
 const lienzoVacio = firmaTecnico.toDataURL();
 let fotosMontacargaBase64=[];//Array para guarar las fotos que subamos del montacarga en base 64
 let fotosBateriaBase64=[];//Array para guarar las fotos que subamos de bateria en base 64
 let fotosCargadorBase64=[];//Array para guarar las fotos que subamos del cargador en base 64
+//Guardar todos los datos 
+const botonEnviarFormulario = document.getElementById("btnEnviar"); 
 
-//Funcion para ocultar o mostrar secciones dependiendo del tipo de servicio seleccionado
-tipoServicio.addEventListener("change",function hola(){
-    SeccionEntrega.style.display = "none";
-    SeccionPreventivo.style.display = "none";
-
-    if(tipoServicio.value === "4"){
-        SeccionEntrega.style.display = "block";
-        
-    }else if(tipoServicio.value === "2"){
-        SeccionPreventivo.style.display = "block";
-
-    }
-
-})
-//Funcion para empaquetar vistaprevia fotos y leida de las mismas 
-function procesarFotos(ContenedorFotos, InputFoto, arrayDestino) {
+//FUNCIONES 
+//Funcion para empaquetar vistaprevia fotos  
+function procesarFotos(ContenedorFotos, InputFoto) {
     // 1. Limpiamos el contenedor antes de empezar,esto con el fin de que si 
     //hay mas fotos, no se acumulen en el contenedor, 
     // sino que se reemplacen por las nuevas fotos seleccionadas
     ContenedorFotos.innerHTML="";
     //Creamos el for para que itere en todas las fotos
     for(let foto of InputFoto.files){
-    
-        const Lector = new FileReader();
         // 2. Creamos un nuevo elemento de imagen para cada foto seleccionada, 
         // y le asignamos la URL de la foto utilizando URL
         const nuevaFoto= document.createElement("img");
@@ -64,7 +59,32 @@ function procesarFotos(ContenedorFotos, InputFoto, arrayDestino) {
          nuevaFoto.style.margin = "10px";
          nuevaFoto.style.justifyContent = "center";
         //4. Agregamos la nueva foto al contenedor de fotos de montacarga
-         ContenedorFotos.appendChild(nuevaFoto);
+         ContenedorFotos.appendChild(nuevaFoto);  
+       }
+    }
+
+function EmpezarTrazo(valor,evento){
+    valor.beginPath();
+    valor.moveTo(evento.offsetX, evento.offsetY);
+}
+function MoverTrazo(valor,evento){
+    valor.lineTo(evento.offsetX, evento.offsetY);
+    valor.stroke();
+    valor.strokeStyle = "red";
+    valor.lineWidth = 3;
+}
+//Funcion eliminar trazo 
+function eliminarTrazo(contexo,valor){
+    contexo.clearRect(0, 0, valor.width, valor.height);
+
+}
+
+/*function enviarFotosEntregaServidor(InputFoto,arrayDestino){ funcion en construcion se necesita ver async y await
+for(let foto of InputFoto.files){
+    
+        const Lector = new FileReader();
+        // 2. Creamos un nuevo elemento de imagen para cada foto seleccionada, 
+        // y le asignamos la URL de la foto utilizando URL
          //5. Creamos esta funcion para volver las imagenes previas
          // un texto64 y que el servidor o pdf las puedan leer
          Lector.onload = function(evento){
@@ -73,22 +93,41 @@ function procesarFotos(ContenedorFotos, InputFoto, arrayDestino) {
             arrayDestino.push(textoBase64)       
        }
         //Leer el archivo
-       Lector.readAsDataURL(foto);
+       return Lector.readAsDataURL(foto);
+    }*/
+
+
+//EVENTOS 
+
+//Ocultar o mostrar secciones dependiendo del tipo de servicio seleccionado
+tipoServicio.addEventListener("change",function hola(){
+    SeccionEntrega.style.display = "none";
+    SeccionPreventivo.style.display = "none";
+    
+
+    if(tipoServicio.value === "4"){
+        SeccionEntrega.style.display = "block";
+        
+    }else if(tipoServicio.value === "2"){
+        SeccionPreventivo.style.display = "block";
+
+    }else if(tipoServicio.value === "1"){
+        SeccionCorrectivo.style.display = "block";
+    }else if(tipoServicio.value === "5"){
+        SeccionRetiro.style.display = "block";
     }
- }
 
-//Funcion para mostrar la foto de la montacarga dependiendo del modelo seleccionado
-fotoMontacarga.addEventListener("change", function mostrarFoto(){
-    procesarFotos(contenedorFotosMontacarga,fotoMontacarga,fotosMontacargaBase64);
-})
-fotoCargador.addEventListener("change",function mostrarFoto(){
-    procesarFotos(contenedorFotosCargador,fotoCargador,fotosCargadorBase64);
-})
-fotoBateria.addEventListener("change", function mostrarFoto(){
-    procesarFotos(contenedorFotosBateria,fotoBateria,fotosBateriaBase64);
 })
 
-//Listener para boton de agregar Insumos
+//EVENTO para mostrar la foto de la montacarga dependiendo del modelo seleccionado y fotos de repuestos correctivo y preventivo
+for(let par of configuracionFotos){
+    par.input.addEventListener("change",function(){
+        procesarFotos(par.contenedor,par.input)
+    })
+}
+
+
+//EVENTO para boton de agregar Insumos
 botonAñadir.addEventListener("click",function(){
 
     tablaInsumosPreventivo.insertAdjacentHTML("beforeend",`
@@ -115,37 +154,8 @@ botonAñadir.addEventListener("click",function(){
 
         </tr>`
     )
-    for (let fila of filaInsumo) {
-
-    console.log(fila.querySelector(".insumo").value)
-    console.log(fila.querySelector(".cantidad").value)
-    console.log(fila.querySelector(".Medidainsumo").value)
-}
-
 })
 
-
-//Espacio dibujo de firma 
-//Variables
-let dibujandoTecnico = false;
-let dibujandoCliente = false;
-
-//Funcion para evitar tanto codigo 
-function EmpezarTrazo(valor,evento){
-    valor.beginPath();
-    valor.moveTo(evento.offsetX, evento.offsetY);
-}
-function MoverTrazo(valor,evento){
-    valor.lineTo(evento.offsetX, evento.offsetY);
-    valor.stroke();
-    valor.strokeStyle = "red";
-    valor.lineWidth = 3;
-}
-//Funcion eliminar trazo 
-function eliminarTrazo(contexo,valor){
-    contexo.clearRect(0, 0, valor.width, valor.height);
-
-}
 //Event listeners (oprimir,mover,soltar)
 firmaTecnico.addEventListener("mousedown", function(e){
     dibujandoTecnico = true;
@@ -184,8 +194,10 @@ eliminarFirmaCliente.addEventListener("click",function(){
 eliminarFirmaTecnico.addEventListener("click", ()=>
 eliminarTrazo(ctxTecnico,firmaTecnico));
 
-//Guardar Firmas
-guardarFirmaCliente.addEventListener("click",function(){
+
+//Evento de escucha boton de enviar para recolectar toda la info y enviarla al servidor
+botonEnviarFormulario.addEventListener("click", function(){
+    //Recolectar imagenes de firmas de el cliente
     const firmaActual= firmaCliente.toDataURL();
     if(firmaActual == lienzoVacio){
         alert("FIRMA EL DOCUMENTO POR FAVOR");
@@ -194,4 +206,8 @@ guardarFirmaCliente.addEventListener("click",function(){
             console.log(firmaActual);
 
         }
-    })
+    //Recolectar la informacion de las imagenes del montacara,bateria y cargador
+    console.log(enviarFotosEntregaServidor(fotoMontacarga,fotosMontacargaBase64));
+    console.log(enviarFotosEntregaServidor(fotoBateria,fotosBateriaBase64));
+    console.log(enviarFotosEntregaServidor(fotoCargador,fotosCargadorBase64));
+})
