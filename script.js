@@ -17,8 +17,8 @@ const configuracionFotos = [
     { input: fotoMontacargaRetiro, contenedor: contenedorFotosMontacargaRetiro },
     { input: fotoCargadorRetiro, contenedor: contenedorFotosCargadorRetiro },
     { input: fotoBateriaRetiro, contenedor: contenedorFotosBateriaRetiro },
-    { input: fotoRepuestosPreventivo, contenedor: contendorFotosRepuestosPreventivo },
-    { input: fotoRepuestosCorrectivo, contenedor: contendorFotosRepuestosCorrectivo }
+    { input: fotoRepuestosPreventivo, contenedor: contenedorFotosRepuestosPreventivos },
+    { input: fotoRepuestosCorrectivo, contenedor: contenedorFotosRepuestosCorrectivo }
 ];
 //Firmas
 const firmaTecnico = document.getElementById("firmaTecnico");
@@ -103,18 +103,24 @@ for(let foto of InputFoto.files){
 tipoServicio.addEventListener("change",function hola(){
     SeccionEntrega.style.display = "none";
     SeccionPreventivo.style.display = "none";
+    SeccionCorrectivo.style.display ="none";
+    SeccionRetiro.style.display = "none";
     
 
     if(tipoServicio.value === "4"){
         SeccionEntrega.style.display = "block";
+        tipoServicio.style.display="none";
         
     }else if(tipoServicio.value === "2"){
         SeccionPreventivo.style.display = "block";
+        tipoServicio.style.display="none";
 
     }else if(tipoServicio.value === "1"){
         SeccionCorrectivo.style.display = "block";
+        tipoServicio.style.display="none";
     }else if(tipoServicio.value === "5"){
         SeccionRetiro.style.display = "block";
+        tipoServicio.style.display="none";
     }
 
 })
