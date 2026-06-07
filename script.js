@@ -1,9 +1,17 @@
 //Definicion de variables
 const tipoServicio = document.getElementById("tipoServicio");
+const fuenteEnergia = document.getElementById("fuenteEnergia");
+const tipoRueda = document.getElementById("tipoRueda");
+
 const SeccionEntrega= document.getElementById("entrega");
 const SeccionPreventivo = document.getElementById("preventivo");
 const SeccionCorrectivo = document.getElementById("correctivo");
 const SeccionRetiro = document.getElementById("retiro");
+const SeccionDiagnostico = document.getElementById("diagnostico");
+const PreguntasCombustion = document.getElementById("PreguntasCombustion");
+const PreguntasElectricas = document.getElementById("preguntasElectricas");
+const RuedasMacizas = document.getElementById("preguntasRuedasMacizas");
+const RuedasNeumaticas = document.getElementById("preguntasRuedasNeumaticas");
 
 //Seccion insumos mto prev
 const tablaInsumosPreventivo =  document.getElementById("tablaInsumosPreventivo");
@@ -105,18 +113,20 @@ tipoServicio.addEventListener("change",function hola(){
     SeccionPreventivo.style.display = "none";
     SeccionCorrectivo.style.display ="none";
     SeccionRetiro.style.display = "none";
+    SeccionDiagnostico.style.display = "none";
     
 
-    if(tipoServicio.value === "4"){
-        SeccionEntrega.style.display = "block";
+    if(tipoServicio.value === "1"){
+        SeccionCorrectivo.style.display = "block";
         tipoServicio.style.display="none";
-        
     }else if(tipoServicio.value === "2"){
         SeccionPreventivo.style.display = "block";
         tipoServicio.style.display="none";
-
-    }else if(tipoServicio.value === "1"){
-        SeccionCorrectivo.style.display = "block";
+    }else if(tipoServicio.value === "3"){
+        SeccionDiagnostico.style.display = "block";
+        tipoServicio.style.display="none";
+    }else if(tipoServicio.value === "4"){
+        SeccionEntrega.style.display = "block";
         tipoServicio.style.display="none";
     }else if(tipoServicio.value === "5"){
         SeccionRetiro.style.display = "block";
@@ -124,6 +134,35 @@ tipoServicio.addEventListener("change",function hola(){
     }
 
 })
+
+//Ocultar o mostrar secciones dependiendo la respuesta de tipo de energia que usan las montacargas
+fuenteEnergia.addEventListener("change",function (){
+    PreguntasCombustion.style.display = "none";
+    PreguntasElectricas.style.display = "none";
+
+    if(fuenteEnergia.value === "1"){
+        PreguntasElectricas.style.display = "block";
+    }else if(fuenteEnergia.value === "2"){
+        PreguntasCombustion.style.display = "block";
+}
+
+})
+
+//Ocultar o mostrar preguntas dependiendo el tipo de rueda 
+
+tipoRueda.addEventListener("change",function (){
+    RuedasMacizas.style.display = "none";
+    RuedasNeumaticas.style.display = "none";
+
+    if(tipoRueda.value === "1"){
+        RuedasNeumaticas.style.display = "block";
+    }else if(tipoRueda.value === "2"){
+        RuedasMacizas.style.display = "block";
+}
+
+})
+
+
 
 //EVENTO para mostrar la foto de la montacarga dependiendo del modelo seleccionado y fotos de repuestos correctivo y preventivo
 for(let par of configuracionFotos){

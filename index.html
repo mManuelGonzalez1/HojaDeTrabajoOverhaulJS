@@ -758,15 +758,53 @@
 
         </section><!--Fin seccion tipo servicio Retiro de equipo-->
 
-        <section class="Diagnostico" id="diagnostico">
-            <label for="fuenteEnergia">¿Cual es su fuente de energia:</label>
+        <section class="Diagnostico" id="diagnostico" style ="display: none;">
+            <h1> Servicio Diagnostico</h1>
+
+            <label for="fuenteEnergia">¿Cual es la fuente de energia del equipo:</label>
             <select name="fuenteEnergia" id="fuenteEnergia" required >
                 <option value="0" disabled selected>Selecciona una fuente</option>
                 <option value="1">Eléctrica</option>
                 <option value="2">Combustión</option>
             </select><br>
 
-            <div id="preguntasElectricas">
+            <div id="PreguntasCombustion"  style="display: none;">
+                <h2>Creacion Montacarga Combustion</h2>
+                <fieldset>
+                    <legend>Datos generales del equipo</legend>
+                    <label for="TipoDeCombustible">¿Que combustible utiliza?:</label>
+                    <select name="tipoDeCombustible" id="tipoDeCombustible" required >
+                    <option value="0" disabled selected>Selecciona un tipo</option>
+                    <option value="1">Gasolina</option>
+                    <option value="2">Diesel</option>
+                    <option value="3">Gas</option>
+                    </select><br>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Datos del motor</legend>
+                </fieldset>
+
+                <fieldset>
+                <legend>Datos y medidas chasis</legend>
+                <label for="AlturaMastilH1Combustion">Altura mastil replegado:</label>
+                <input type="number" name="AlturaMastilH1Combustion" id="AlturaMastilH1Combustion"> cm<br>
+                <label for="AlturaMastilH3Combustion">Altura mastil extendido:</label>
+                <input type="number" name="AlturaMastilH3Combustion" id="AlturaMastilH3Combustion"> cm<br>
+                <label for="CapacidadDeCargaCombustion">Capacidad de carga:</label>
+                <input type="number" name="CapacidadDeCargaCombustion" id="CapacidadDeCargaCombustion"> kg<br>
+                <label for="fotoMontacargaCombustion">Foto del Montacarga:</label>
+                <input type="file" id="fotoMontacargaCombustion" name="fotoMontacarga[]" accept="image/*" multiple aria-label="Subir fotos del montacarga">
+                <article id="contenedorFotosMontacarga"></article>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Datos de las ruedas </legend>
+                </fieldset>
+
+            </div>
+
+            <div id="preguntasElectricas" style="display: none;">
                 <h2>Creacion Montacarga Eléctrica</h2>
                 <fieldset>
                     <legend>Datos generales del equipo</legend>
@@ -803,6 +841,19 @@
                 <input type="number" name="anchoCofre" id="anchoCofre"> cm<br>
                 <label for="altoCofre">Alto del cofre:</label>
                 <input type="number" name="altoCofre" id="altoCofre"> cm<br>
+                <label for="tipoConectorBateria">Conector de la bateria:</label>
+                <select name="tipoConectorBateria" id="tipoConectorBateria"  required >
+                <option value="0" disabled selected>Selecciona un tipo</option>
+                <option value="1">Anderson</option>
+                <option value="2">Rema</option>
+                </select><br>
+                <label for="tipoConectorIntercelda">Tipo de conector intercelda:</label>
+                <select name="tipoConectorIntercelda" id="tipoConectorIntercelda" required >
+                <option value="0" disabled selected>Selecciona un tipo</option>
+                <option value="1">Tornillo</option>
+                <option value="2">Soldado</option>
+                <option value="3">Sellado</option>
+                </select><br>
                 </fieldset>
 
                 <fieldset>
@@ -828,15 +879,41 @@
                 <option value="1">Neumática</option>
                 <option value="2">Maciza</option>
                 </select><br>
-                <label for="MedidaRodamientoRuedaCarga">Medida rodamiento rueda carga</label>
-                <input type="text" name="MedidaRodamientoRuedaCarga" id="MedidaRodamientoRuedaCarga"><br>
-                </fieldset>
+                
+                <div id="preguntasRuedasMacizas" style="display: none;">
+                    <fieldset>
+                        <legend>Rueda Motriz</legend>
+                        <label for="AltoRuedaMotriz">Alto de rueda Motriz:</label>
+                        <input type="number" name="AltoRuedaMotriz" id="AltoRuedaMotriz"> cm<br>
+                        <label for="AnchoRuedaMotriz">Ancho rueda Motriz:</label>
+                        <input type="number" name="AnchoRuedaMotriz" id="AnchoRuedaMotriz"> cm<br>
+                        <label for="HuecosRuedaMotriz">Numero de huecos:</label>
+                        <input type="number" name="HuecosRuedaMotriz" id="HuecosRuedaMotriz"> <br>
+                    </fieldset>
 
+                    <fieldset>
+                        <legend>Ruedas de carga</legend>
+                        <label for="AltoRuedaCarga">Alto de rueda de carga:</label>
+                        <input type="number" name="AltoRuedaCarga" id="AltoRuedaCarga"> cm<br>
+                        <label for="AnchoRuedaCarga">Ancho rueda de carga:</label>
+                        <input type="number" name="AnchoRuedaCarga" id="AnchoRuedaCarga"> cm<br>
+                    </fieldset>
 
+                    <fieldset>
+                        <legend>Ruedas caster</legend>
+                        <label for="AltoRuedaCaster">Alto de rueda caster:</label>
+                        <input type="number" name="AltoRuedaCaster" id="AltoRuedaCaster"> cm<br>
+                        <label for="AnchoRuedaCaster">Ancho rueda caster:</label>
+                        <input type="number" name="AnchoRuedaCaster" id="AnchoRuedaCaster"> cm<br>
+                    </fieldset>
+                </div>
+                <div id="preguntasRuedasNeumaticas" style="display: none;">
+                    <h2>Preguntas para ruedas neumáticas</h2>
+                </div>
                 
 
+                </fieldset>
             </div>
-            <div id="preguntasCombustion"></div>
         </section>
 
         <section class="DatosGeneralesContenedor">
