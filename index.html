@@ -794,8 +794,8 @@
                 <label for="CapacidadDeCargaCombustion">Capacidad de carga:</label>
                 <input type="number" name="CapacidadDeCargaCombustion" id="CapacidadDeCargaCombustion"> kg<br>
                 <label for="fotoMontacargaCombustion">Foto del Montacarga:</label>
-                <input type="file" id="fotoMontacargaCombustion" name="fotoMontacarga[]" accept="image/*" multiple aria-label="Subir fotos del montacarga">
-                <article id="contenedorFotosMontacarga"></article>
+                <input type="file" id="fotoMontacargaCombustionDiagnostico" name="fotoMontacarga[]" accept="image/*" multiple aria-label="Subir fotos del montacarga">
+                <article id="contenedorFotosMontacargaCombustionDiagnostico"></article>
                 </fieldset>
 
                 <fieldset>
@@ -866,9 +866,9 @@
                 <input type="number" name="CapacidadDeCarga" id="CapacidadDeCarga"> kg<br>
                 <label for="largoHorquillas">Largo de las horquillas:</label>
                 <input type="number" name="largoHorquillas" id="largoHorquillas"> cm<br>
-                <label for="fotoMontacarga">Foto del Montacarga:</label>
-                <input type="file" id="fotoMontacarga" name="fotoMontacarga[]" accept="image/*" multiple aria-label="Subir fotos del montacarga">
-                <article id="contenedorFotosMontacarga"></article>
+                <label for="fotoMontacargaDiagnostico">Foto del Montacarga:</label>
+                <input type="file" id="fotoMontacargaDiagnostico" name="fotoMontacargaDiagnostico[]" accept="image/*" multiple aria-label="Subir fotos del montacarga">
+                <article id="contenedorFotosMontacargaDiagnostico"></article>
                 </fieldset>
 
                 <fieldset>
@@ -939,11 +939,30 @@
             <button type="button" id="guardarFirmaCliente">Guardar Firma</button><br>
              <button type="submit" id="btnEnviar" aria-label="Enviar formulario">Enviar Formulario ✉️</button>
         </fieldset>
-            
-        </section><!--Fin seccion datos generales (Observaciones,pendientes,nombre tecnico y persona recibe y firma)-->
+</section><!--Fin seccion datos generales (Observaciones,pendientes,nombre tecnico y persona recibe y firma)-->
     </form>
 </main>
 <footer></footer>
-<script src="./script.js"></script>
+
+<!-- ========================================
+     IMPORTACIÓN DE MÓDULOS
+     Orden de carga: IMPORTANTE
+     ======================================== -->
+<!-- 1. Variables generales y eventos de filtrado -->
+<!-- variablesGenerales.js se importa desde script.js -->
+
+<!-- 2. Sección de Fotos: variables, funciones y eventos -->
+
+<!-- 3. Sección de Firmas: variables, funciones y eventos 
+<script src="./seccionFirmas.js"></script> 
+-->
+
+
+<!-- 4. Sección de Insumos: variables y eventos 
+<script src="./seccionInsumos.js"></script> 
+-->
+<!-- 5. Script principal -->
+<script src="./script.js" type="module"></script>
+
 </body>
 </html>
