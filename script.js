@@ -15,7 +15,10 @@ import {
     PreguntasCombustion,
     PreguntasElectricas,
     RuedasMacizas,
-    RuedasNeumaticas
+    RuedasNeumaticas,
+    tipoDeCombustible,
+    MontacargaCombustionGas,
+    MontacargaCombustionGasolina
 } from './variablesGenerales.js';
 
 import {configuracionFotos,procesarFotos} from './seccionFotos.js';

@@ -778,8 +778,30 @@
                     <option value="1">Gasolina</option>
                     <option value="2">Diesel</option>
                     <option value="3">Gas</option>
+                    <option value="4">Dual</option>
                     </select><br>
                 </fieldset>
+
+               <div id="CombustionGas" style ="display: none;">
+                <fieldset>
+                    <legend>Datos del sistema de gas</legend>
+                    <label for="MarcaVaporizador">Marca del vaporizador:</label>
+                    <input type="text" name="MarcaVaporizador" id="MarcaVaporizador"><br>
+                    <label for="ReferenciaVaporizador">Referencia del vaporizador:</label>
+                    <input type="text" name="ReferenciaVaporizador" id="ReferenciaVaporizador"><br>
+                </fieldset>
+               </div> 
+
+               <div id="CombustionGasolina" style ="display: none;">
+                <fieldset>
+                    <legend>Datos del sistema de gasolina</legend>
+                    <label for="ReferenciaCarburador">Referencia del carburador:</label>
+                    <input type="text" name="ReferenciaCarburador" id="ReferenciaCarburador"><br>
+                </fieldset>
+               </div> 
+
+               
+
 
                 <fieldset>
                     <legend>Datos del motor</legend>
@@ -796,6 +818,19 @@
                 <label for="fotoMontacargaCombustion">Foto del Montacarga:</label>
                 <input type="file" id="fotoMontacargaCombustionDiagnostico" name="fotoMontacarga[]" accept="image/*" multiple aria-label="Subir fotos del montacarga">
                 <article id="contenedorFotosMontacargaCombustionDiagnostico"></article>
+                </fieldset>
+
+                <fieldset>
+                <legend>Referencia filtros</legend>
+                <label for="RefeFiltroAire">Referencia filtro de aire: </label>
+                <input type="text" name="RefeFiltroAire" id="RefeFiltroAire"> <br>
+                <label for="RefeFiltroMotor">Referencia filtro de motor: </label>
+                <input type="text" name="RefeFiltroMotor" id="RefeFiltroMotor"> <br>
+                <label for="RefeFiltroTransmisión">Referencia filtro de transmisión: </label>
+                <input type="text" name="RefeFiltroTransmisión" id="RefeFiltroTransmisión"> <br>
+                <label for="RefeFiltroCombustible">Referencia filtro de combustible: </label>
+                <input type="text" name="RefeFiltroCombustible" id="RefeFiltroCombustible"> <br>
+        
                 </fieldset>
 
                 <fieldset>
@@ -944,24 +979,6 @@
 </main>
 <footer></footer>
 
-<!-- ========================================
-     IMPORTACIÓN DE MÓDULOS
-     Orden de carga: IMPORTANTE
-     ======================================== -->
-<!-- 1. Variables generales y eventos de filtrado -->
-<!-- variablesGenerales.js se importa desde script.js -->
-
-<!-- 2. Sección de Fotos: variables, funciones y eventos -->
-
-<!-- 3. Sección de Firmas: variables, funciones y eventos 
-<script src="./seccionFirmas.js"></script> 
--->
-
-
-<!-- 4. Sección de Insumos: variables y eventos 
-<script src="./seccionInsumos.js"></script> 
--->
-<!-- 5. Script principal -->
 <script src="./script.js" type="module"></script>
 
 </body>

@@ -5,6 +5,7 @@
 export const tipoServicio = document.getElementById("tipoServicio");
 export const fuenteEnergia = document.getElementById("fuenteEnergia");
 export const tipoRueda = document.getElementById("tipoRueda");
+export const tipoDeCombustible = document.getElementById("tipoDeCombustible");
 
 // Secciones principales
 export const SeccionEntrega = document.getElementById("entrega");
@@ -18,6 +19,8 @@ export const PreguntasCombustion = document.getElementById("PreguntasCombustion"
 export const PreguntasElectricas = document.getElementById("preguntasElectricas");
 export const RuedasMacizas = document.getElementById("preguntasRuedasMacizas");
 export const RuedasNeumaticas = document.getElementById("preguntasRuedasNeumaticas");
+export const MontacargaCombustionGas = document.getElementById("CombustionGas");
+export const MontacargaCombustionGasolina = document.getElementById("CombustionGasolina");
 
 // Exponer como variables globales para compatibilidad con scripts clásicos
 Object.assign(window, {
@@ -76,6 +79,18 @@ fuenteEnergia.addEventListener("change", function() {
         PreguntasCombustion.style.display = "block";
     }
 });
+
+//Ocultar o mostrar secciones dependiendo el tipo de combustion 
+tipoDeCombustible.addEventListener("change", function(){
+    MontacargaCombustionGas.style.display = "none";
+    MontacargaCombustionGasolina.style.display = "none";
+
+    if(tipoDeCombustible.value === "1"){
+        MontacargaCombustionGasolina.style.display = "block";
+    }else if(tipoDeCombustible.value === "3") {
+        MontacargaCombustionGas.style.display="block";
+    }
+})
 
 // Ocultar o mostrar preguntas dependiendo el tipo de rueda
 tipoRueda.addEventListener("change", function() {
