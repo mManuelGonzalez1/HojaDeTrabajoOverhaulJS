@@ -18,7 +18,10 @@ import {
     RuedasNeumaticas,
     tipoDeCombustible,
     MontacargaCombustionGas,
-    MontacargaCombustionGasolina
+    MontacargaCombustionGasolina,
+    MontacargaCombustionDual,
+    MontacargaCombustionDiesel,
+    
 } from './variablesGenerales.js';
 
 import {configuracionFotos,procesarFotos} from './seccionFotos.js';

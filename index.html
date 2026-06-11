@@ -9,6 +9,7 @@
 <header></header>
 <main>
     <form action="">
+
         <fieldset><!--Informaccion del cliente-->
             <legend>Informacion del cliente</legend>
             <label for="NombreCliente">Nombre del cliente:</label>
@@ -324,7 +325,6 @@
             
         </section><!--Fin seccion tipo servicio Entrega-->
         
-
         <section class="preventivo" id="preventivo" style="display: none;">
             <h1> Mantenimiento preventivo</h1>
             <table>
@@ -782,6 +782,24 @@
                     </select><br>
                 </fieldset>
 
+                
+               <div id="CombustionGasolina" style ="display: none;">
+                <fieldset>
+                    <legend>Datos del sistema de gasolina</legend>
+                    <label for="ReferenciaCarburador">Referencia del carburador:</label>
+                    <input type="text" name="ReferenciaCarburador" id="ReferenciaCarburador"><br>
+                </fieldset>
+               </div> 
+
+               <div id="CombustionDiesel" style ="display: none;">
+                <fieldset>
+                    <legend>Datos del sistema de diesel</legend>
+                    <label for="RefeFiltroCombustibleDiesel">Referencia filtro de combustible: </label>
+                    <input type="text" name="RefeFiltroCombustibleDiesel" id="RefeFiltroCombustibleDiesel" disabled> <br>
+                </fieldset>
+               </div> 
+
+
                <div id="CombustionGas" style ="display: none;">
                 <fieldset>
                     <legend>Datos del sistema de gas</legend>
@@ -792,20 +810,18 @@
                 </fieldset>
                </div> 
 
-               <div id="CombustionGasolina" style ="display: none;">
+               
+               <div id="CombustionDual" style ="display: none;">
                 <fieldset>
-                    <legend>Datos del sistema de gasolina</legend>
-                    <label for="ReferenciaCarburador">Referencia del carburador:</label>
-                    <input type="text" name="ReferenciaCarburador" id="ReferenciaCarburador"><br>
+                    <legend>Datos del sistema dual</legend>
+                    <label for="MarcaVaporizadorDual">Marca del vaporizador:</label>
+                    <input type="text" name="MarcaVaporizadorDual" id="MarcaVaporizadorDual"><br>
+                    <label for="ReferenciaVaporizadorDual">Referencia del vaporizador:</label>
+                    <input type="text" name="ReferenciaVaporizadorDual" id="ReferenciaVaporizadorDual"><br>
+                    <label for="ReferenciaCarburadorDual">Referencia del carburador:</label>
+                    <input type="text" name="ReferenciaCarburadorDual" id="ReferenciaCarburadorDual"><br>
                 </fieldset>
                </div> 
-
-               
-
-
-                <fieldset>
-                    <legend>Datos del motor</legend>
-                </fieldset>
 
                 <fieldset>
                 <legend>Datos y medidas chasis</legend>
@@ -974,7 +990,8 @@
             <button type="button" id="guardarFirmaCliente">Guardar Firma</button><br>
              <button type="submit" id="btnEnviar" aria-label="Enviar formulario">Enviar Formulario ✉️</button>
         </fieldset>
-</section><!--Fin seccion datos generales (Observaciones,pendientes,nombre tecnico y persona recibe y firma)-->
+        </section><!--Fin seccion datos generales (Observaciones,pendientes,nombre tecnico y persona recibe y firma)-->
+    
     </form>
 </main>
 <footer></footer>

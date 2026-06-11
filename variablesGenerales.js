@@ -21,6 +21,10 @@ export const RuedasMacizas = document.getElementById("preguntasRuedasMacizas");
 export const RuedasNeumaticas = document.getElementById("preguntasRuedasNeumaticas");
 export const MontacargaCombustionGas = document.getElementById("CombustionGas");
 export const MontacargaCombustionGasolina = document.getElementById("CombustionGasolina");
+export const MontacargaCombustionDual = document.getElementById("CombustionDual");
+export const MontacargaCombustionDiesel = document.getElementById("CombustionDiesel");
+export const FiltroCombustibleDiesel = document.getElementById("RefeFiltroCombustibleDiesel");
+export const FiltroCombustible = document.getElementById("RefeFiltroCombustible");
 
 // Exponer como variables globales para compatibilidad con scripts clásicos
 Object.assign(window, {
@@ -84,11 +88,20 @@ fuenteEnergia.addEventListener("change", function() {
 tipoDeCombustible.addEventListener("change", function(){
     MontacargaCombustionGas.style.display = "none";
     MontacargaCombustionGasolina.style.display = "none";
+    MontacargaCombustionDual.style.display = "none";
+    MontacargaCombustionDiesel.style.display = "none";
 
     if(tipoDeCombustible.value === "1"){
         MontacargaCombustionGasolina.style.display = "block";
+    }else if(tipoDeCombustible.value === "2"){
+        MontacargaCombustionDiesel.style.display = "block";
+        RefeFiltroCombustibleDiesel.disabled = false;
+        RefeFiltroCombustible.disabled = true;
+
     }else if(tipoDeCombustible.value === "3") {
         MontacargaCombustionGas.style.display="block";
+    }else if(tipoDeCombustible.value === "4") {
+        MontacargaCombustionDual.style.display="block";
     }
 })
 
