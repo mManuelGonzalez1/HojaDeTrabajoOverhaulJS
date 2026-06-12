@@ -8,8 +8,7 @@ export const firmaTecnico = document.getElementById("firmaTecnico");
 export const firmaCliente = document.getElementById("firmaRecibe");
 export const eliminarFirmaTecnico = document.getElementById("eliminarFirmaTecnico");
 export const eliminarFirmaCliente = document.getElementById("eliminarFirmaCliente");
-export const guardarFirmaTecnico = document.getElementById("guardarFirmaTecnico");
-export const guardarFirmaCliente = document.getElementById("guardarFirmaCliente");
+
 
 // Contextos de canvas para dibujar
 export const ctxTecnico = firmaTecnico.getContext("2d");

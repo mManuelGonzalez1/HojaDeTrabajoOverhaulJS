@@ -42,6 +42,7 @@ Object.assign(window, {
     RuedasNeumaticas
 });
 
+
 // ========================================
 // EVENTOS DE FILTRADO Y VISIBILIDAD
 // ========================================
@@ -93,6 +94,8 @@ tipoDeCombustible.addEventListener("change", function(){
 
     if(tipoDeCombustible.value === "1"){
         MontacargaCombustionGasolina.style.display = "block";
+        RefeFiltroCombustibleDiesel.disabled = true;
+        RefeFiltroCombustible.disabled = false;
     }else if(tipoDeCombustible.value === "2"){
         MontacargaCombustionDiesel.style.display = "block";
         RefeFiltroCombustibleDiesel.disabled = false;
@@ -100,8 +103,12 @@ tipoDeCombustible.addEventListener("change", function(){
 
     }else if(tipoDeCombustible.value === "3") {
         MontacargaCombustionGas.style.display="block";
+        RefeFiltroCombustibleDiesel.disabled = true;
+        RefeFiltroCombustible.disabled = false;
     }else if(tipoDeCombustible.value === "4") {
         MontacargaCombustionDual.style.display="block";
+        RefeFiltroCombustibleDiesel.disabled = true;
+        RefeFiltroCombustible.disabled = false;
     }
 })
 
